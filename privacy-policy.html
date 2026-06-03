@@ -5,358 +5,541 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy – Memory Mailer</title>
   <style>
+    /* ── Reset ────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ───────────────────────────────────────────────── */
+    :root {
+      --coral:   #CD6A4E;
+      --plum:    #7C5CBF;
+      --ink:     #1C1917;
+      --body:    #44403C;
+      --muted:   #78716C;
+      --rule:    #E7E0D8;
+      --bg:      #FDFAF7;
+      --surface: #FFFFFF;
+      --accent-bg: #FDF3F0;
+    }
+
+    /* ── Base ─────────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.7;
-      color: #2B2520;
-      background: #FDFAF7;
-      padding: 2rem 1rem 4rem;
+      line-height: 1.75;
+      color: var(--body);
+      background: var(--bg);
     }
 
-    .container {
-      max-width: 720px;
+    /* ── Layout ───────────────────────────────────────────────── */
+    .page {
+      max-width: 760px;
       margin: 0 auto;
+      padding: 0 1.25rem 5rem;
     }
 
-    header {
+    /* ── Header ───────────────────────────────────────────────── */
+    .site-header {
+      padding: 3.5rem 0 3rem;
       text-align: center;
+      border-bottom: 1px solid var(--rule);
       margin-bottom: 3rem;
     }
 
-    .logo {
-      font-size: 2.5rem;
+    .site-header .emoji {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .site-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
       margin-bottom: 0.5rem;
     }
 
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: #1a1210;
-      margin-bottom: 0.25rem;
+    .site-header .subtitle {
+      font-size: 0.875rem;
+      color: var(--muted);
     }
 
-    .meta {
+    /* ── Table of contents ────────────────────────────────────── */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 2rem;
+    }
+
+    .toc li {
+      counter-increment: toc;
       font-size: 0.875rem;
-      color: #888;
+    }
+
+    .toc li::before {
+      content: counter(toc) ". ";
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .toc a {
+      color: var(--body);
+      text-decoration: none;
+    }
+
+    .toc a:hover { color: var(--coral); text-decoration: underline; }
+
+    @media (max-width: 540px) {
+      .toc ol { grid-template-columns: 1fr; }
+    }
+
+    /* ── Sections ─────────────────────────────────────────────── */
+    section {
+      margin-bottom: 2.5rem;
     }
 
     h2 {
       font-size: 1.125rem;
       font-weight: 700;
-      color: #1a1210;
-      margin: 2.5rem 0 0.75rem;
-      padding-bottom: 0.35rem;
-      border-bottom: 2px solid #f0ebe5;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    h2 .num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--coral);
+      background: var(--accent-bg);
+      border-radius: 4px;
+      padding: 0.15rem 0.45rem;
+      letter-spacing: 0.02em;
     }
 
     h3 {
-      font-size: 1rem;
+      font-size: 0.9375rem;
       font-weight: 600;
-      color: #2B2520;
-      margin: 1.5rem 0 0.4rem;
+      color: var(--ink);
+      margin: 1.75rem 0 0.5rem;
     }
 
-    p { margin-bottom: 0.9rem; }
-
-    ul {
-      margin: 0.5rem 0 0.9rem 1.4rem;
+    p {
+      margin-bottom: 0.875rem;
+      color: var(--body);
     }
 
-    li { margin-bottom: 0.35rem; }
+    p:last-child { margin-bottom: 0; }
 
+    /* ── Lists ────────────────────────────────────────────────── */
+    ul, ol {
+      padding-left: 1.25rem;
+      margin-bottom: 0.875rem;
+    }
+
+    li {
+      margin-bottom: 0.375rem;
+    }
+
+    li:last-child { margin-bottom: 0; }
+
+    /* ── Links ────────────────────────────────────────────────── */
     a {
-      color: #CD6A4E;
+      color: var(--coral);
       text-decoration: none;
     }
 
     a:hover { text-decoration: underline; }
 
+    /* ── Address block ────────────────────────────────────────── */
+    .address-block {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      font-style: normal;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .address-block strong { color: var(--ink); }
+
+    /* ── Dividers between subsections ─────────────────────────── */
+    .subsection {
+      border-top: 1px solid var(--rule);
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .subsection:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    /* ── Tables ───────────────────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0 0.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--rule);
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
-      margin: 0.75rem 0 1.25rem;
+      font-size: 0.875rem;
+      background: var(--surface);
+    }
+
+    thead tr {
+      background: #F5F0EB;
     }
 
     th {
       text-align: left;
-      background: #f0ebe5;
-      padding: 0.5rem 0.75rem;
-      font-weight: 600;
-      color: #1a1210;
+      padding: 0.65rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
     }
 
     td {
-      padding: 0.5rem 0.75rem;
-      border-bottom: 1px solid #f0ebe5;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--rule);
       vertical-align: top;
+      color: var(--body);
     }
 
-    tr:last-child td { border-bottom: none; }
+    td strong { color: var(--ink); }
 
+    /* ── Callout ──────────────────────────────────────────────── */
     .callout {
-      background: #fdf3f0;
-      border-left: 4px solid #CD6A4E;
-      border-radius: 0 8px 8px 0;
-      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      background: var(--accent-bg);
+      border-radius: 10px;
+      padding: 1.125rem 1.25rem;
       margin: 1.25rem 0;
-      font-size: 0.9rem;
+      font-size: 0.9375rem;
     }
 
-    footer {
-      margin-top: 4rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #e8e2db;
-      font-size: 0.8rem;
-      color: #aaa;
-      text-align: center;
+    .callout-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      line-height: 1.6;
     }
+
+    /* ── Rights grid ──────────────────────────────────────────── */
+    .rights-grid {
+      display: grid;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+    }
+
+    .right-item {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.875rem 1rem;
+      font-size: 0.9375rem;
+    }
+
+    .right-item strong {
+      display: block;
+      color: var(--ink);
+      font-size: 0.875rem;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .site-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); }
   </style>
 </head>
 <body>
-<div class="container">
+<div class="page">
 
-  <header>
-    <div class="logo">💌</div>
+  <!-- Header -->
+  <header class="site-header">
+    <span class="emoji">💌</span>
     <h1>Privacy Policy</h1>
-    <p class="meta">Memory Mailer &nbsp;·&nbsp; Last updated: June 2026</p>
+    <p class="subtitle">Memory Mailer &nbsp;·&nbsp; Last updated: June 2026</p>
   </header>
 
+  <!-- Table of contents -->
+  <nav class="toc" aria-label="Table of contents">
+    <p class="toc-title">Contents</p>
+    <ol>
+      <li><a href="#controller">Who is responsible</a></li>
+      <li><a href="#data">What data we collect</a></li>
+      <li><a href="#processors">Service providers</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#retention">Retention periods</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#security">Data security</a></li>
+      <li><a href="#children">Children's privacy</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
   <!-- 1. Controller -->
-  <h2>1. Who is responsible for your data?</h2>
-
-  <p>The controller responsible for personal data processed through the Memory Mailer app is:</p>
-
-  <p>
-    <strong><!-- YOUR FULL LEGAL NAME --></strong><br />
-    <!-- YOUR ADDRESS --><br />
-    Austria<br />
-    E-mail: <a href="mailto:memorymailer@agencyagency.at">memorymailer@agencyagency.at</a>
-  </p>
-
-  <p>
-    If you have any questions about this policy or your personal data, please contact us at the
-    e-mail address above. We will respond within 30 days.
-  </p>
+  <section id="controller">
+    <h2><span class="num">1</span> Who is responsible for your data?</h2>
+    <p>The controller responsible for personal data processed through the Memory Mailer app is:</p>
+    <address class="address-block">
+      <strong><!-- YOUR FULL LEGAL NAME --></strong><br />
+      <!-- YOUR ADDRESS --><br />
+      Austria<br />
+      <a href="mailto:memorymailer@agencyagency.at">memorymailer@agencyagency.at</a>
+    </address>
+    <p>For any questions about this policy or your personal data, contact us at the address above. We will respond within 30 days.</p>
+  </section>
 
   <!-- 2. Data we collect -->
-  <h2>2. What data we collect and why</h2>
+  <section id="data">
+    <h2><span class="num">2</span> What data we collect and why</h2>
 
-  <h3>2.1 Delivery addresses</h3>
-  <p>
-    To fulfil your print order we collect the <strong>recipient name and postal address</strong>
-    you enter in the app. This information is passed to our printing partner (Prodigi) who
-    prints and ships your photos. Without this data we cannot complete your order.
-  </p>
-  <ul>
-    <li><strong>Legal basis:</strong> Performance of a contract (Art. 6(1)(b) GDPR)</li>
-    <li><strong>Retention:</strong> Kept for 7 years to satisfy accounting and tax obligations, then deleted</li>
-  </ul>
+    <div class="subsection">
+      <h3>2.1 Delivery addresses</h3>
+      <p>To fulfil your print order we collect the <strong>recipient name and postal address</strong> you enter in the app. This is passed to our printing partner (Prodigi) who prints and ships your photos. Without this data we cannot complete your order.</p>
+      <ul>
+        <li><strong>Legal basis:</strong> Performance of a contract (Art. 6(1)(b) GDPR)</li>
+        <li><strong>Retention:</strong> 7 years to satisfy accounting and tax obligations, then deleted</li>
+      </ul>
+    </div>
 
-  <h3>2.2 Photos</h3>
-  <p>
-    Photos you select for printing are temporarily uploaded to our servers (Supabase, hosted
-    in the EU) and forwarded to Prodigi for production. We do not analyse, share, or use your
-    photos for any purpose other than fulfilling your order.
-  </p>
-  <ul>
-    <li><strong>Legal basis:</strong> Performance of a contract (Art. 6(1)(b) GDPR)</li>
-    <li><strong>Retention:</strong> Deleted automatically within 30 days after your order is placed</li>
-  </ul>
+    <div class="subsection">
+      <h3>2.2 Photos</h3>
+      <p>Photos you select for printing are temporarily uploaded to our servers (Supabase, hosted in the EU) and forwarded to Prodigi for production. We do not analyse, share, or use your photos for any purpose other than fulfilling your order.</p>
+      <ul>
+        <li><strong>Legal basis:</strong> Performance of a contract (Art. 6(1)(b) GDPR)</li>
+        <li><strong>Retention:</strong> Deleted automatically within 30 days after your order is placed</li>
+      </ul>
+    </div>
 
-  <h3>2.3 Payment and subscription data</h3>
-  <p>
-    Subscription payments are processed by <strong>Stripe</strong>. When you subscribe, Stripe
-    collects your card details, billing address, and e-mail address. We never see or store your
-    full card number. We receive and store a <strong>Stripe customer ID</strong> and your
-    <strong>e-mail address</strong> (returned by Stripe after checkout) so we can identify your
-    subscription and respond to support requests.
-  </p>
-  <ul>
-    <li><strong>Legal basis:</strong> Performance of a contract (Art. 6(1)(b) GDPR)</li>
-    <li><strong>Retention:</strong> Stripe retains billing records as required by financial law.
-        We delete our copy of your e-mail and customer ID upon a verified deletion request.</li>
-  </ul>
+    <div class="subsection">
+      <h3>2.3 Payment and subscription data</h3>
+      <p>Subscription payments are processed by <strong>Stripe</strong>. When you subscribe, Stripe collects your card details, billing address, and e-mail address. We never see or store your full card number. We receive and store a <strong>Stripe customer ID</strong> and your <strong>e-mail address</strong> (returned by Stripe after checkout) to identify your subscription and respond to support requests.</p>
+      <ul>
+        <li><strong>Legal basis:</strong> Performance of a contract (Art. 6(1)(b) GDPR)</li>
+        <li><strong>Retention:</strong> Stripe retains billing records as required by financial law. We delete our copy of your e-mail and customer ID upon a verified deletion request.</li>
+      </ul>
+    </div>
 
-  <h3>2.4 Feedback messages</h3>
-  <p>
-    If you submit feedback through the app we collect your <strong>message text</strong>,
-    <strong>app and device version</strong>, and — if available — your <strong>e-mail address</strong>
-    so we can reply to you. Feedback is stored in our database and forwarded to our inbox via
-    the Resend e-mail service.
-  </p>
-  <ul>
-    <li><strong>Legal basis:</strong> Legitimate interest in improving our service and responding
-        to users (Art. 6(1)(f) GDPR)</li>
-    <li><strong>Retention:</strong> 2 years, then deleted</li>
-  </ul>
+    <div class="subsection">
+      <h3>2.4 Feedback messages</h3>
+      <p>If you submit feedback through the app we collect your <strong>message text</strong>, <strong>app and device version</strong>, and — if available — your <strong>e-mail address</strong> so we can reply. Feedback is stored in our database and forwarded to our inbox via the Resend e-mail service.</p>
+      <ul>
+        <li><strong>Legal basis:</strong> Legitimate interest in improving our service and responding to users (Art. 6(1)(f) GDPR)</li>
+        <li><strong>Retention:</strong> 2 years, then deleted</li>
+      </ul>
+    </div>
 
-  <h3>2.5 App diagnostics</h3>
-  <p>
-    We do not integrate any third-party analytics or crash-reporting SDK. Basic device and
-    OS version strings are included with feedback submissions only when you actively send
-    feedback. We do not track you across apps or websites.
-  </p>
+    <div class="subsection">
+      <h3>2.5 App diagnostics</h3>
+      <p>We do not integrate any third-party analytics or crash-reporting SDK. Basic device and OS version strings are included with feedback submissions only when you actively send feedback. We do not track you across apps or websites.</p>
+    </div>
+  </section>
 
-  <!-- 3. Third-party processors -->
-  <h2>3. Third-party service providers</h2>
-
-  <p>
-    We use the following sub-processors who handle personal data on our behalf under written
-    Data Processing Agreements:
-  </p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Provider</th>
-        <th>Purpose</th>
-        <th>Country</th>
-        <th>Safeguard</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Stripe, Inc.</strong></td>
-        <td>Payment processing, subscription management</td>
-        <td>USA</td>
-        <td>EU Standard Contractual Clauses (SCCs) + Stripe DPA</td>
-      </tr>
-      <tr>
-        <td><strong>Prodigi Group Ltd.</strong></td>
-        <td>Photo printing and postal delivery</td>
-        <td>United Kingdom</td>
-        <td>UK adequacy decision; Prodigi DPA</td>
-      </tr>
-      <tr>
-        <td><strong>Supabase, Inc.</strong></td>
-        <td>Cloud database and file storage</td>
-        <td>EU (Frankfurt, Germany)</td>
-        <td>Data stored within the EU; Supabase DPA</td>
-      </tr>
-      <tr>
-        <td><strong>Resend, Inc.</strong></td>
-        <td>Transactional e-mail delivery (feedback notifications to us)</td>
-        <td>USA</td>
-        <td>EU Standard Contractual Clauses (SCCs) + Resend DPA</td>
-      </tr>
-      <tr>
-        <td><strong>Apple Inc.</strong></td>
-        <td>App distribution via App Store, on-device storage (UserDefaults)</td>
-        <td>USA</td>
-        <td>Apple's Data Processing Agreement; Apple Privacy Framework</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p>
-    We do not sell your personal data to any third party. We do not share your data with
-    anyone beyond the processors listed above.
-  </p>
+  <!-- 3. Processors -->
+  <section id="processors">
+    <h2><span class="num">3</span> Third-party service providers</h2>
+    <p>We use the following sub-processors who handle personal data on our behalf under written Data Processing Agreements:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Purpose</th>
+            <th>Country</th>
+            <th>Safeguard</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Stripe, Inc.</strong></td>
+            <td>Payment processing, subscription management</td>
+            <td>USA</td>
+            <td>EU Standard Contractual Clauses + Stripe DPA</td>
+          </tr>
+          <tr>
+            <td><strong>Prodigi Group Ltd.</strong></td>
+            <td>Photo printing and postal delivery</td>
+            <td>United Kingdom</td>
+            <td>UK adequacy decision; Prodigi DPA</td>
+          </tr>
+          <tr>
+            <td><strong>Supabase, Inc.</strong></td>
+            <td>Cloud database and file storage</td>
+            <td>EU (Frankfurt, Germany)</td>
+            <td>Data stored within the EU; Supabase DPA</td>
+          </tr>
+          <tr>
+            <td><strong>Resend, Inc.</strong></td>
+            <td>Transactional e-mail (feedback notifications to us)</td>
+            <td>USA</td>
+            <td>EU Standard Contractual Clauses + Resend DPA</td>
+          </tr>
+          <tr>
+            <td><strong>Apple Inc.</strong></td>
+            <td>App distribution, on-device storage</td>
+            <td>USA</td>
+            <td>Apple Data Processing Agreement; Apple Privacy Framework</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>We do not sell your personal data. We do not share your data with anyone beyond the processors listed above.</p>
+  </section>
 
   <!-- 4. International transfers -->
-  <h2>4. International data transfers</h2>
+  <section id="transfers">
+    <h2><span class="num">4</span> International data transfers</h2>
+    <p>Some service providers are based outside the European Economic Area (EEA). Where data is transferred to the USA we rely on <strong>EU Standard Contractual Clauses</strong> (Commission Decision 2021/914) to ensure an adequate level of protection. A copy of the relevant clauses is available on request.</p>
+    <p>Data transferred to the United Kingdom is protected by the UK adequacy decision adopted by the European Commission in June 2021.</p>
+  </section>
 
-  <p>
-    Some of our service providers are based outside the European Economic Area (EEA).
-    Where data is transferred to the USA we rely on the
-    <strong>EU Standard Contractual Clauses</strong> (Commission Decision 2021/914) to
-    ensure an adequate level of data protection. A copy of the relevant SCCs is available
-    on request.
-  </p>
-  <p>
-    Data transferred to the United Kingdom is protected by the UK adequacy decision
-    adopted by the European Commission (June 2021).
-  </p>
+  <!-- 5. Retention -->
+  <section id="retention">
+    <h2><span class="num">5</span> How long we keep your data</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Data category</th>
+            <th>Retention period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Photos uploaded for printing</td>
+            <td>Deleted within 30 days of order placement</td>
+          </tr>
+          <tr>
+            <td>Delivery addresses and order records</td>
+            <td>7 years (tax/accounting obligation), then deleted</td>
+          </tr>
+          <tr>
+            <td>E-mail address and Stripe customer ID</td>
+            <td>Until deletion request; Stripe billing records per financial law</td>
+          </tr>
+          <tr>
+            <td>Feedback messages and device info</td>
+            <td>2 years, then deleted</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <!-- 5. Data retention -->
-  <h2>5. How long we keep your data</h2>
+  <!-- 6. Rights -->
+  <section id="rights">
+    <h2><span class="num">6</span> Your rights under GDPR</h2>
+    <p>As a person in the EU/EEA you have the following rights regarding your personal data:</p>
 
-  <table>
-    <thead>
-      <tr><th>Data category</th><th>Retention period</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Photos uploaded for printing</td><td>Deleted within 30 days of order placement</td></tr>
-      <tr><td>Delivery addresses and order records</td><td>7 years (tax/accounting obligation), then deleted</td></tr>
-      <tr><td>E-mail address and Stripe customer ID</td><td>Until deletion request; Stripe billing records per financial law</td></tr>
-      <tr><td>Feedback messages and device info</td><td>2 years, then deleted</td></tr>
-    </tbody>
-  </table>
+    <div class="rights-grid">
+      <div class="right-item">
+        <strong>Right of access (Art. 15)</strong>
+        Request a copy of the personal data we hold about you.
+      </div>
+      <div class="right-item">
+        <strong>Right to rectification (Art. 16)</strong>
+        Ask us to correct inaccurate or incomplete data.
+      </div>
+      <div class="right-item">
+        <strong>Right to erasure (Art. 17)</strong>
+        Request deletion of your data, subject to legal retention obligations.
+      </div>
+      <div class="right-item">
+        <strong>Right to restriction (Art. 18)</strong>
+        Ask us to limit how we use your data in certain circumstances.
+      </div>
+      <div class="right-item">
+        <strong>Right to data portability (Art. 20)</strong>
+        Receive your data in a structured, machine-readable format.
+      </div>
+      <div class="right-item">
+        <strong>Right to object (Art. 21)</strong>
+        Object to processing based on legitimate interest.
+      </div>
+    </div>
 
-  <!-- 6. Your rights -->
-  <h2>6. Your rights under GDPR</h2>
+    <div class="callout">
+      <span class="callout-icon">✉️</span>
+      <div>
+        To exercise any of these rights, e-mail <a href="mailto:memorymailer@agencyagency.at">memorymailer@agencyagency.at</a> with the subject line <em>"GDPR Request"</em>. We will respond within <strong>30 days</strong>. We may need to verify your identity before acting on the request.
+      </div>
+    </div>
 
-  <p>As a person in the EU/EEA you have the following rights regarding your personal data:</p>
+    <p>You also have the right to lodge a complaint with the supervisory authority. As the controller is based in Austria, the lead authority is the <strong>Datenschutzbehörde (DSB)</strong>, Barichgasse 40–42, 1030 Vienna — <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">www.dsb.gv.at</a>. If you are located in another EU member state you may also contact the authority there.</p>
+  </section>
 
-  <ul>
-    <li><strong>Right of access (Art. 15)</strong> — You can request a copy of the personal data we hold about you.</li>
-    <li><strong>Right to rectification (Art. 16)</strong> — You can ask us to correct inaccurate data.</li>
-    <li><strong>Right to erasure (Art. 17)</strong> — You can request deletion of your data ("right to be forgotten"), subject to legal retention obligations.</li>
-    <li><strong>Right to restriction of processing (Art. 18)</strong> — You can ask us to restrict how we use your data in certain circumstances.</li>
-    <li><strong>Right to data portability (Art. 20)</strong> — You can request your data in a structured, machine-readable format.</li>
-    <li><strong>Right to object (Art. 21)</strong> — You can object to processing based on legitimate interest.</li>
-    <li><strong>Right to withdraw consent</strong> — Where processing is based on consent, you can withdraw it at any time without affecting past processing.</li>
-  </ul>
-
-  <div class="callout">
-    To exercise any of these rights, please e-mail
-    <a href="mailto:memorymailer@agencyagency.at">memorymailer@agencyagency.at</a> with the subject line
-    <em>"GDPR Request"</em>. We will respond within <strong>30 days</strong>.
-    We may need to verify your identity before acting on the request.
-  </div>
-
-  <p>
-    You also have the right to lodge a complaint with your national data protection authority.
-    As the controller is based in Austria, the lead supervisory authority is the
-    <strong>Datenschutzbehörde (DSB)</strong>:
-    <a href="https://www.dsb.gv.at" target="_blank" rel="noopener">www.dsb.gv.at</a>,
-    Barichgasse 40–42, 1030 Vienna, Austria.
-    If you are located in another EU member state, you may also contact the authority in your
-    country of residence.
-  </p>
-
-  <!-- 7. Data security -->
-  <h2>7. Data security</h2>
-
-  <p>
-    All data in transit between the app and our servers is encrypted using TLS. Data at rest
-    is stored in Supabase (EU region) which encrypts storage at the infrastructure level.
-    Access to our database is restricted by role-based access controls and API key
-    authentication. We review our security measures regularly and update them as needed.
-  </p>
+  <!-- 7. Security -->
+  <section id="security">
+    <h2><span class="num">7</span> Data security</h2>
+    <p>All data in transit is encrypted using TLS. Data at rest is stored in Supabase (EU region), which encrypts storage at the infrastructure level. Access to our database is restricted by role-based access controls and API key authentication. We review our security measures regularly.</p>
+  </section>
 
   <!-- 8. Children -->
-  <h2>8. Children's privacy</h2>
-
-  <p>
-    Memory Mailer is not directed at children under the age of 16. We do not knowingly collect
-    personal data from children. If you believe we have inadvertently collected data from a child,
-    please contact us and we will delete it promptly.
-  </p>
+  <section id="children">
+    <h2><span class="num">8</span> Children's privacy</h2>
+    <p>Memory Mailer is not directed at children under the age of 16. We do not knowingly collect personal data from children. If you believe we have inadvertently collected data from a child, please contact us and we will delete it promptly.</p>
+  </section>
 
   <!-- 9. Changes -->
-  <h2>9. Changes to this policy</h2>
-
-  <p>
-    We may update this Privacy Policy from time to time to reflect changes in our services or
-    legal requirements. When we make material changes we will update the "Last updated" date
-    at the top of this page. We encourage you to review this policy periodically.
-    Continued use of the app after changes constitutes acceptance of the updated policy.
-  </p>
+  <section id="changes">
+    <h2><span class="num">9</span> Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our services or applicable law. When we make material changes we will update the "Last updated" date at the top of this page. Continued use of the app after changes are posted constitutes acceptance of the updated policy.</p>
+  </section>
 
   <!-- 10. Contact -->
-  <h2>10. Contact</h2>
+  <section id="contact">
+    <h2><span class="num">10</span> Contact</h2>
+    <p>For any questions, data requests, or concerns about this Privacy Policy:</p>
+    <address class="address-block">
+      <strong>Memory Mailer</strong><br />
+      <a href="mailto:memorymailer@agencyagency.at">memorymailer@agencyagency.at</a>
+    </address>
+  </section>
 
-  <p>
-    For any questions, data requests, or concerns about this Privacy Policy, please contact:<br />
-    <a href="mailto:memorymailer@agencyagency.at">memorymailer@agencyagency.at</a>
-  </p>
-
-  <footer>
+  <footer class="site-footer">
     <p>Memory Mailer &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Effective from June 2026</p>
   </footer>
 
